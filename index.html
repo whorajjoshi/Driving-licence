@@ -1,0 +1,171 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Line | Sign In / Sign Up</title>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+body{display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#0d47a1,#42a5f5);}
+.container{background:#fff;width:380px;border-radius:20px;padding:40px 35px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+.container:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,0,0,0.25);}
+h1{color:gold;font-weight:bold;margin-bottom:5px;font-size:22px;}
+h3{color:#0d47a1;margin-bottom:20px;font-weight:600;}
+input{width:100%;padding:12px 15px;margin:10px 0;border:1px solid #ddd;border-radius:10px;font-size:15px;outline:none;}
+input:focus{border-color:#0d47a1;box-shadow:0 0 5px rgba(13,71,161,0.3);}
+.toggle-password{display:flex;align-items:center;font-size:13px;margin-top:-5px;color:#555;}
+.toggle-password input{width:18px;height:18px;margin-right:6px;}
+.btn{width:100%;padding:12px;margin-top:15px;background:linear-gradient(135deg,#0d47a1,#42a5f5);color:white;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:0.3s;}
+.btn:hover{background:linear-gradient(135deg,#08306b,#1e88e5);}
+.form-toggle{text-align:center;margin-top:15px;font-size:14px;color:#555;}
+.form-toggle a{color:#0d47a1;text-decoration:none;font-weight:500;cursor:pointer;}
+.form-toggle a:hover{text-decoration:underline;}
+.error{color:red;font-size:13px;margin-top:5px;}
+#recaptcha-container{margin-top:10px;}
+@media(max-width:450px){.container{width:90%;padding:30px 25px;}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Credit Line</h1>
+  <h3>Powered by ONLINEHUB India</h3>
+
+  <!-- Sign Up Form -->
+  <div id="signup-form">
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="mobile" placeholder="Mobile Number (10 digits)">
+    <input type="password" id="password" placeholder="Password">
+    <div class="toggle-password">
+      <input type="checkbox" id="showPassword"> <label for="showPassword">Show Password</label>
+    </div>
+    <div id="recaptcha-container"></div>
+    <button class="btn" id="sendOtpBtn">Send OTP</button>
+    <div class="error" id="errorMsg"></div>
+    <div class="form-toggle">Already have an account? <a id="switchToSignIn">Sign In</a></div>
+  </div>
+
+  <!-- OTP Verification -->
+  <div id="otp-form" style="display:none;">
+    <input type="text" id="otp" placeholder="Enter OTP">
+    <button class="btn" id="verifyOtpBtn">Verify OTP</button>
+    <div class="error" id="otpErrorMsg"></div>
+  </div>
+
+  <!-- Sign In Form -->
+  <div id="signin-form" style="display:none;">
+    <input type="text" id="signinMobile" placeholder="Mobile Number">
+    <input type="password" id="signinPassword" placeholder="Password">
+    <div class="toggle-password">
+      <input type="checkbox" id="showPasswordSignIn"> <label for="showPasswordSignIn">Show Password</label>
+    </div>
+    <button class="btn" id="signinBtn">Sign In</button>
+    <div class="error" id="signinErrorMsg"></div>
+    <div class="form-toggle">Don't have an account? <a id="switchToSignUp">Sign Up</a></div>
+  </div>
+
+</div>
+
+<script>
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // Show/Hide Password
+  document.getElementById('showPassword').addEventListener('change',()=>{
+    document.getElementById('password').type = document.getElementById('showPassword').checked ? 'text':'password';
+  });
+  document.getElementById('showPasswordSignIn').addEventListener('change',()=>{
+    document.getElementById('signinPassword').type = document.getElementById('showPasswordSignIn').checked ? 'text':'password';
+  });
+
+  // Toggle forms
+  document.getElementById('switchToSignIn').addEventListener('click',()=>{
+    document.getElementById('signup-form').style.display='none';
+    document.getElementById('otp-form').style.display='none';
+    document.getElementById('signin-form').style.display='block';
+  });
+  document.getElementById('switchToSignUp').addEventListener('click',()=>{
+    document.getElementById('signin-form').style.display='none';
+    document.getElementById('signup-form').style.display='block';
+  });
+
+  // OTP Signup
+  let confirmationResult;
+  document.getElementById('sendOtpBtn').addEventListener('click',()=>{
+    const name=document.getElementById('name').value.trim();
+    const mobile=document.getElementById('mobile').value.trim();
+    const password=document.getElementById('password').value.trim();
+    const errorMsg=document.getElementById('errorMsg');
+    errorMsg.textContent='';
+
+    if(!name || !mobile || !password){ errorMsg.textContent="All fields are required"; return; }
+    if(!/^\d{10}$/.test(mobile)){ errorMsg.textContent="Enter a valid 10-digit mobile number"; return; }
+
+    db.collection("users").doc(mobile).get().then(doc=>{
+      if(doc.exists){ errorMsg.textContent="Mobile number already registered!"; }
+      else{
+        window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{'size':'normal'});
+        auth.signInWithPhoneNumber("+91"+mobile,window.recaptchaVerifier)
+          .then(result=>{
+            confirmationResult=result;
+            document.getElementById('signup-form').style.display='none';
+            document.getElementById('otp-form').style.display='block';
+          }).catch(err=>{ errorMsg.textContent=err.message; });
+      }
+    });
+  });
+
+  document.getElementById('verifyOtpBtn').addEventListener('click',()=>{
+    const otp=document.getElementById('otp').value.trim();
+    const otpErrorMsg=document.getElementById('otpErrorMsg');
+    otpErrorMsg.textContent='';
+    confirmationResult.confirm(otp).then(result=>{
+      const name=document.getElementById('name').value.trim();
+      const mobile=document.getElementById('mobile').value.trim();
+      const password=document.getElementById('password').value.trim();
+      db.collection("users").doc(mobile).set({name,mobile,password})
+        .then(()=>{
+          alert("✅ Sign Up Successful!");
+          document.getElementById('otp-form').style.display='none';
+          document.getElementById('signin-form').style.display='block';
+          document.getElementById('signinMobile').value=mobile;
+        }).catch(err=>{ otpErrorMsg.textContent=err.message; });
+    }).catch(err=>{ otpErrorMsg.textContent="Invalid OTP, try again"; });
+  });
+
+  // Sign In
+  document.getElementById('signinBtn').addEventListener('click',()=>{
+    const mobile=document.getElementById('signinMobile').value.trim();
+    const password=document.getElementById('signinPassword').value.trim();
+    const signinErrorMsg=document.getElementById('signinErrorMsg');
+    signinErrorMsg.textContent='';
+    db.collection("users").doc(mobile).get().then(doc=>{
+      if(doc.exists && doc.data().password===password){
+        alert(`✅ Welcome back, ${doc.data().name}!`);
+        window.location.href="dashboard.html?mobile="+mobile;
+      }else{
+        signinErrorMsg.textContent="Invalid mobile number or password!";
+      }
+    });
+  });
+
+</script>
+</body>
+</html>

@@ -48,21 +48,6 @@
     }
     .nav-btn:hover { background: rgba(0,0,0,0.5); }
 
-    /* Review Section */
-    .review-container {
-      display: flex;
-      gap: 1rem;
-      overflow: hidden;
-      transition: transform 0.5s ease;
-    }
-    .review-card {
-      flex: 0 0 48%;
-      background: #fff7ef;
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    }
-
     /* WhatsApp Floating Button */
     .whatsapp {
       position: fixed;
@@ -142,31 +127,148 @@
       <div class="bg-white rounded-xl py-4 shadow"><div class="text-2xl mb-1">⚖️</div><p class="text-sm">Driving Laws</p></div>
     </div>
   </section>
+<!-- ✅ OUR HAPPY CUSTOMERS SECTION (FULL WORKING) -->
+<section class="bg-orange-50 py-10 text-center">
+  <h2 class="text-2xl font-bold text-orange-600 mb-6">Our Happy Customers</h2>
+  <div class="relative max-w-5xl mx-auto overflow-hidden">
+    <div id="review-container" class="flex transition-transform duration-700 ease-in-out">
 
-  <!-- Happy Customers -->
-  <section class="bg-white text-center">
-    <h2 class="text-xl font-bold text-orange-600 mb-3">Happy Customers</h2>
-    <div class="relative max-w-4xl mx-auto overflow-hidden">
-      <div id="review-container" class="review-container">
-        <!-- 12 Reviews -->
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/men/1.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Rohit Sharma</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Got my licence easily! Great service.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/women/2.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Pooja Verma</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Very fast and professional.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/men/3.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Vikas Mehta</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Highly recommend this service!</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/women/4.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Kavita Singh</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Smooth renewal process!</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/men/5.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Anil Patel</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Good customer support.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/women/6.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Neha Kapoor</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Very reliable consultancy.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/men/7.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Suresh Das</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Fast process and tracking.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/women/8.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Aarti Jain</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">I got my licence in 5 days!</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/men/9.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Ravi Kumar</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Affordable and quick.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/women/10.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Priya Sharma</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Excellent online service!</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/men/11.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Ajay Nair</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Nice guidance and follow-up.</p></div>
-        <div class="review-card"><img src="https://randomuser.me/api/portraits/women/12.jpg" class="mx-auto w-14 h-14 rounded-full mb-1"><h3 class="font-semibold text-sm">Simran Gill</h3><p class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</p><p class="text-xs text-gray-600">Very helpful and responsive!</p></div>
+      <!-- 12 DEMO REVIEWS -->
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/men/1.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Rohit Kumar</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Very smooth process, highly satisfied!</p>
+        </div>
       </div>
-      <button class="nav-btn" style="left:10px" onclick="moveReview(-1)">‹</button>
-      <button class="nav-btn" style="right:10px" onclick="moveReview(1)">›</button>
-    </div>
-  </section>
 
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/women/2.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Pooja Singh</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Fast and easy service, thank you!</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/men/3.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Amit Mehta</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Excellent support and guidance.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/women/4.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Kavita Yadav</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Got my licence without any hassle.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/men/5.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Rajesh Patel</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Best RTO consultancy ever.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/women/6.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Neha Verma</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Loved their quick service!</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/men/7.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Arun Nair</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Highly professional staff.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/women/8.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Aarti Das</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Very cooperative and helpful team.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/men/9.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Ravi Chauhan</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Fast, friendly and reliable.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/women/10.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Priya Sharma</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Quick process and excellent support.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/men/11.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Vivek Rathi</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Highly recommend this service.</p>
+        </div>
+      </div>
+
+      <div class="w-1/2 md:w-1/2 flex-shrink-0 px-3">
+        <div class="bg-white rounded-xl shadow p-4">
+          <img src="https://randomuser.me/api/portraits/women/12.jpg" class="mx-auto w-16 h-16 rounded-full mb-2">
+          <h3 class="font-semibold">Simran Gill</h3>
+          <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+          <p class="text-gray-600 text-sm">Very smooth experience!</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button class="absolute left-3 top-1/2 -translate-y-1/2 bg-orange-500 text-white rounded-full w-8 h-8" onclick="moveReview(-1)">‹</button>
+    <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-orange-500 text-white rounded-full w-8 h-8" onclick="moveReview(1)">›</button>
+  </div>
+</section>
+
+<script>
+  // ✅ SLIDER SCRIPT
+  let reviewIndex = 0;
+  const reviewContainer = document.getElementById('review-container');
+  const totalReviews = document.querySelectorAll('#review-container > div').length;
+  const reviewsPerSlide = 2;
+  const totalSlides = Math.ceil(totalReviews / reviewsPerSlide);
+
+  function showReviewSlide(n) {
+    reviewIndex = (reviewIndex + n + totalSlides) % totalSlides;
+    reviewContainer.style.transform = `translateX(-${reviewIndex * 100}%)`;
+  }
+
+  function moveReview(n) {
+    showReviewSlide(n);
+  }
+
+  setInterval(() => moveReview(1), 5000);
+</script>
   <!-- Footer -->
   <footer class="text-center text-gray-600 py-3 bg-orange-100 border-t rounded-t-2xl text-sm">
     © 2025 Licence Seva Consultancy — All Rights Reserved.
@@ -190,18 +292,6 @@
       slideIndex = (slideIndex + n + slides.length) % slides.length;
       slides[slideIndex].classList.add("active");
     }
-
-    // Review Carousel (2 reviews at a time)
-    let reviewIndex = 0;
-    const reviewContainer = document.getElementById('review-container');
-    const totalReviews = document.querySelectorAll('.review-card').length;
-    const step = 2;
-    function showReviewSlide(n) {
-      reviewIndex = (reviewIndex + n + Math.ceil(totalReviews / step)) % Math.ceil(totalReviews / step);
-      reviewContainer.style.transform = `translateX(-${reviewIndex * 100}%)`;
-    }
-    function moveReview(n) { showReviewSlide(n); }
-    setInterval(() => showReviewSlide(1), 5000);
   </script>
 </body>
 </html>

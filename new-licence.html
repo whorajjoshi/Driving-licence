@@ -1,9 +1,8 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
   <title>Apply for Learning Driving Licence - Licence Seva Consultancy</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -33,54 +32,7 @@
 
   <main class="max-w-3xl mx-auto p-4">
 
-    <!-- Eligibility Section -->
-    <section class="bg-white p-5 rounded-xl shadow mb-4">
-      <h2 class="text-lg font-bold text-orange-600 mb-2">Eligibility Criteria</h2>
-      <ul class="list-disc ml-5 text-sm leading-relaxed">
-        <li>Applicant must be at least <strong>18 years old</strong>.</li>
-        <li>Must have valid age and address proof (Aadhaar, PAN, etc.).</li>
-        <li>Should be familiar with traffic rules and regulations.</li>
-        <li>Medical fitness certificate required for age above 40 years.</li>
-      </ul>
-    </section>
-
-    <!-- Documents Section -->
-    <section class="bg-white p-5 rounded-xl shadow mb-4">
-      <h2 class="text-lg font-bold text-orange-600 mb-2">Required Documents</h2>
-      <ul class="list-disc ml-5 text-sm leading-relaxed">
-        <li>Aadhaar Card (Front and Back)</li>
-        <li>Passport size photograph</li>
-        <li>Signature (optional)</li>
-        <li>Age proof (Birth Certificate / 10th Certificate)</li>
-        <li>Address proof (Electricity Bill / Rental Agreement)</li>
-        <li>Medical certificate (Form 1A for age 40+)</li>
-      </ul>
-    </section>
-
-    <!-- Process -->
-    <section class="bg-white p-5 rounded-xl shadow mb-4">
-      <h2 class="text-lg font-bold text-orange-600 mb-2">Learning Licence Process</h2>
-      <div class="text-sm leading-relaxed space-y-2">
-        <p>✅ Step 1: Fill the online form with your correct details.</p>
-        <p>✅ Step 2: Upload Aadhaar (front/back), photo, and signature.</p>
-        <p>✅ Step 3: Pay the required fees securely.</p>
-        <p>✅ Step 4: Our team verifies your application and submits it to RTO.</p>
-        <p>✅ Step 5: You receive your <strong>Learning Licence</strong> on your email within hours.</p>
-      </div>
-    </section>
-
-    <!-- Fees -->
-    <section class="bg-white p-5 rounded-xl shadow mb-4">
-      <h2 class="text-lg font-bold text-orange-600 mb-2">Fees Details</h2>
-      <div class="text-sm">
-        <p><strong>Application Fee:</strong> ₹350</p>
-        <p><strong>RTO Test Fee:</strong> ₹0</p>
-        <p><strong>Service Charge:</strong> ₹499</p>
-        <p class="font-semibold mt-1">Total Payable: <span class="text-orange-600">₹749</span></p>
-      </div>
-    </section>
-
-    <!-- Apply Now -->
+    <!-- Apply Now Form -->
     <section class="bg-orange-100 p-5 rounded-xl shadow mb-4 text-center">
       <h2 class="text-lg font-bold text-orange-700 mb-3">Apply Now for Learning Licence</h2>
       <p class="text-sm text-gray-700 mb-3">Fill in your details below. Our team will contact you shortly after verification.</p>
@@ -166,7 +118,7 @@
   </footer>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwu-hKE_L17pCR41OPPJMuE7xI6FIEE70lBckHvbqW3dRQtYOoPTQzdPZTJfEmr0s2_IA/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby-oTOZ3rghHaxiwhIYbXqtNrCB9oXwDcR-xmUaMWsj07NW5KEvmmdwTRP65INq4LhHBw/exec';
     const form = document.getElementById('llForm');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -182,23 +134,12 @@
       return true;
     }
 
-    // file size checks
     ['aadhaarFront','aadhaarBack','photo','signature'].forEach(id=>{
       const input=document.getElementById(id);
       if(input) input.addEventListener('change',e=>{
         validateFileSize(e.target, e.target.previousElementSibling.innerText);
       });
     });
-
-    function fileToBase64(file){
-      return new Promise((resolve,reject)=>{
-        if(!file){resolve(null);return;}
-        const r=new FileReader();
-        r.onload=()=>resolve(r.result);
-        r.onerror=()=>reject('File read error');
-        r.readAsDataURL(file);
-      });
-    }
 
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();

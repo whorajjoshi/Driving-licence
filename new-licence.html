@@ -52,6 +52,8 @@
       const result = await response.json();
       if (result.result === 'success') {
         alert('Application submitted successfully!');
+        // Redirect to the payment page after successful form submission
+        window.location.href = 'https://your-payment-gateway-url.com'; // Replace with actual payment URL
       } else {
         alert('Error submitting application.');
       }
@@ -188,7 +190,7 @@
         <!-- Payment Section -->
         <div class="text-center mt-5">
           <p class="text-sm mb-2 font-medium">Total Payable Amount: <span class="text-orange-600 font-bold">₹600</span></p>
-          <button type="button" class="bg-orange-600 text-white px-6 py-2 rounded-lg shadow hover:bg-orange-700 transition"> 💳 Proceed to Payment </button>
+          <button type="button" class="bg-orange-600 text-white px-6 py-2 rounded-lg shadow hover:bg-orange-700 transition" onclick="submitForm(event)"> 💳 Proceed to Payment </button>
         </div>
       </form>
     </section>
